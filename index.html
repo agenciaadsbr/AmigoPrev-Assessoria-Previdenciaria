@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AmigoPrev — Sofreu um acidente? Entenda seus direitos junto ao INSS</title>
+<meta name="description" content="Assessoria em seguro e previdência para trabalhadores CLT que sofreram acidentes. Orientação sobre auxílio-acidente, auxílio-doença e seguros, com análise inicial gratuita pelo WhatsApp.">
+<meta property="og:title" content="AmigoPrev — Assessoria em Seguro e Previdência">
+<meta property="og:description" content="Teve um acidente? A gente explica seus direitos junto ao INSS e cuida da papelada com você. Análise inicial gratuita.">
+<meta property="og:image" content="/img/hero.webp">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#021A32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="/img/hero.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+a{color:#C93A29}a:hover{color:#A82E20}
+img{display:block;max-width:100%}
+
+/* ---------- motion: entrada do hero ---------- */
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes reveal{from{clip-path:inset(0 0 100% 0 round 28px)}to{clip-path:inset(0 0 0 0 round 28px)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}80%,100%{box-shadow:0 0 0 18px rgba(37,211,102,0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes typing{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.in1{animation:up .8s cubic-bezier(.2,.7,.2,1) both .05s}
+.in2{animation:up .8s cubic-bezier(.2,.7,.2,1) both .18s}
+.in3{animation:up .8s cubic-bezier(.2,.7,.2,1) both .3s}
+.in4{animation:up .8s cubic-bezier(.2,.7,.2,1) both .42s}
+.heroimg{animation:reveal 1.1s cubic-bezier(.7,0,.2,1) both .15s}
+.heroimg img{animation:kb 14s ease-out both}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.card1{animation:pop .7s cubic-bezier(.2,.8,.2,1.2) both .9s}
+.card2{animation:pop .7s cubic-bezier(.2,.8,.2,1.2) both 1.15s}
+.card3{animation:pop .7s cubic-bezier(.2,.8,.2,1.2) both 1.4s}
+.float{animation:floaty 6s ease-in-out infinite}
+.float2{animation:floaty 7s ease-in-out infinite 1s}
+.dot{animation:typing 1.2s infinite}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+.track{animation:marquee 32s linear infinite}
+.wa-ring{animation:ring 2.2s infinite}
+.badge-spin{animation:spin 18s linear infinite}
+
+/* ---------- motion: revelação conforme o scroll ---------- */
+@supports (animation-timeline: view()){
+  .rv{animation:up linear both;animation-timeline:view();animation-range:entry 5% entry 45%}
+  .rv-l{animation:fromL linear both;animation-timeline:view();animation-range:entry 5% entry 50%}
+  .rv-r{animation:fromR linear both;animation-timeline:view();animation-range:entry 5% entry 50%}
+  .zoom img{animation:zoomOut linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+  .grow{transform-origin:left;animation:grow linear both;animation-timeline:view();animation-range:entry 20% cover 55%}
+  .clip{animation:clipIn linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+}
+@keyframes fromL{from{opacity:0;transform:translateX(-48px)}to{opacity:1;transform:none}}
+@keyframes fromR{from{opacity:0;transform:translateX(48px)}to{opacity:1;transform:none}}
+@keyframes zoomOut{from{transform:scale(1.18)}to{transform:scale(1)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes clipIn{from{clip-path:inset(12% 12% 12% 12% round 28px);opacity:.4}to{clip-path:inset(0 0 0 0 round 28px);opacity:1}}
+
+/* ---------- interações ---------- */
+.btn{transition:transform .25s cubic-bezier(.2,.8,.2,1),background .2s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px);background:#A82E20 !important;color:#FFFFFF !important;box-shadow:0 14px 30px -10px rgba(201,58,41,.7)}
+.btn .arr{transition:transform .25s}
+.btn:hover .arr{transform:translateX(4px)}
+.ghost{transition:background .2s,border-color .2s}
+.ghost:hover{background:rgba(2,26,50,.06) !important;color:#021A32 !important}
+.ghost-d:hover{background:rgba(255,255,255,.1) !important;color:#FFFFFF !important}
+.lift{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.lift:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(2,26,50,.45)}
+.tile{position:relative;overflow:hidden}
+.tile img{transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.tile:hover img{transform:scale(1.06)}
+.svc{transition:background .35s,padding .35s}
+.svc:hover{background:#FFFFFF}
+.svc .bar{transition:transform .45s cubic-bezier(.2,.8,.2,1);transform:scaleX(0);transform-origin:left}
+.svc:hover .bar{transform:scaleX(1)}
+.svc .num{transition:color .3s}
+.svc:hover .num{color:#E74F3D !important}
+.navlink{position:relative}
+.navlink::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:#E74F3D;transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.navlink:hover::after{transform:scaleX(1)}
+.faq summary{list-style:none;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq .pl{transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s}
+.faq[open] .pl{transform:rotate(45deg);background:#E74F3D !important;color:#FFFFFF !important}
+.faq[open]{background:#FFFFFF !important;box-shadow:0 20px 40px -28px rgba(2,26,50,.35)}
+.faq{transition:background .3s,box-shadow .3s}
+.inp{width:100%;height:56px;padding:0 18px;border:1.5px solid #D5DBE2;border-radius:14px;font:500 16px Inter,system-ui,sans-serif;color:#021A32;background:#FFFFFF;outline:none;transition:border-color .2s,box-shadow .2s}
+.inp:focus{border-color:#021A32;box-shadow:0 0 0 4px rgba(231,79,61,.22)}
+.inp::placeholder{color:#8A94A0}
+.wa{position:fixed;right:20px;bottom:20px;z-index:60;transition:transform .25s}
+.wa:hover{transform:scale(1.08)}
+.fade{background:linear-gradient(90deg,rgba(2,26,50,0) 0%,rgba(2,26,50,0) 42%,rgba(2,26,50,.03) 50%,rgba(2,26,50,.09) 57%,rgba(2,26,50,.19) 64%,rgba(2,26,50,.33) 71%,rgba(2,26,50,.5) 78%,rgba(2,26,50,.68) 85%,rgba(2,26,50,.84) 92%,rgba(2,26,50,.95) 97%,#021A32 100%),linear-gradient(0deg,rgba(2,26,50,.18),rgba(2,26,50,0) 45%)}
+.hdr{backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px)}
+
+@media (max-width:860px){
+  .nav{display:none !important}
+  .mc{text-align:center !important;align-items:center !important;justify-content:center !important}
+  .h1{font-size:38px !important;letter-spacing:-1px !important}
+  .h2{font-size:30px !important}
+  .sec{padding-top:72px !important;padding-bottom:72px !important}
+  .hide-m{display:none !important}
+  .bento{grid-template-columns:repeat(1,minmax(0,1fr)) !important;grid-auto-rows:auto !important}
+  .card1{left:12px !important;top:auto !important;bottom:16px !important;max-width:260px !important}
+  .card2{display:none !important}
+  .bento > *{grid-column:auto !important;grid-row:auto !important;min-height:320px !important}
+  .steps{grid-template-columns:repeat(1,minmax(0,1fr)) !important}
+  .svc{grid-template-columns:56px 1fr !important}
+  .svc .svc-d{grid-column:2 !important}
+  .heroimg{height:420px !important}
+  .stmt{font-size:28px !important}
+  .fade{background:linear-gradient(180deg,rgba(2,26,50,0) 0%,rgba(2,26,50,0) 45%,rgba(2,26,50,.06) 55%,rgba(2,26,50,.2) 65%,rgba(2,26,50,.42) 75%,rgba(2,26,50,.68) 85%,rgba(2,26,50,.9) 94%,#021A32 100%)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+}
+.ferr{margin:-6px 0 0;font-size:14px;color:#FFB4A8;font-weight:600;text-align:left}
+.btn[disabled]{opacity:.7;cursor:wait}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #33404D; background: #FFFFFF; width: 100%; overflow-x: hidden">
+
+<!-- HEADER -->
+<header class="hdr" style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.82); border-bottom: 1px solid rgba(2,26,50,0.06)">
+<div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#inicio" aria-label="AmigoPrev — início" style="text-decoration: none; display: flex; flex-direction: column; line-height: 1">
+<span style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.8px; color: #021A32">Amigo<span style="color: #E74F3D">Prev</span></span>
+<span style="font-size: 10px; color: #5B6673; margin-top: 4px">Assessoria em Seguro e Previdência</span>
+</a>
+<nav class="nav" aria-label="Seções" style="display: flex; gap: 32px; font-family: Montserrat, sans-serif; font-weight: 600; font-size: 14px">
+<a class="navlink" href="#para-quem" style="color: #021A32; text-decoration: none">Para quem é</a>
+<a class="navlink" href="#servicos" style="color: #021A32; text-decoration: none">O que fazemos</a>
+<a class="navlink" href="#como-funciona" style="color: #021A32; text-decoration: none">Como funciona</a>
+<a class="navlink" href="#duvidas" style="color: #021A32; text-decoration: none">Dúvidas</a>
+</nav>
+<a class="btn" href="#contato" style="display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: 999px; background: #C93A29; color: #FFFFFF; text-decoration: none; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 14px">Análise gratuita<span class="arr" aria-hidden="true">→</span></a>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="inicio" style="position: relative; background: #FAF6F3; padding: 56px 24px 88px; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; left: -120px; bottom: -180px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(231,79,61,0.16), rgba(231,79,61,0) 70%)"></div>
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px; align-items: center; position: relative">
+<div class="mc" style="flex: 1 1 500px; min-width: 0; display: flex; flex-direction: column; gap: 26px; align-items: flex-start">
+<span class="in1" style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px; border-radius: 999px; background: #FFFFFF; border: 1px solid #EFE4DC; font-size: 13px; font-weight: 600; color: #021A32">
+<span style="width: 26px; height: 26px; border-radius: 50%; background: #021A32; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+Para quem trabalha com carteira assinada
+</span>
+<h1 class="h1 in2" style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 62px; line-height: 1.02; letter-spacing: -2.2px; color: #021A32">Teve um <span style="color: #E74F3D; font-style: italic">acidente</span> e precisa entender seus direitos junto ao INSS?</h1>
+<p class="in3" style="margin: 0; font-size: 19px; line-height: 1.6; color: #4A5563; max-width: 530px">A gente explica, em linguagem simples, quais benefícios e seguros podem se aplicar ao seu caso — e cuida da papelada com você, do primeiro contato até a resposta final.</p>
+<div class="mc in4" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+<a class="btn" href="#contato" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 58px; padding: 0 30px; border-radius: 999px; background: #C93A29; color: #FFFFFF; text-decoration: none; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 16px">Quero saber se tenho direito<span class="arr" aria-hidden="true">→</span></a>
+<a class="ghost" href="https://wa.me/5534984221619?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20da%20AmigoPrev%20e%20gostaria%20de%20saber%20se%20tenho%20direito%20a%20algum%20benef%C3%ADcio." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 58px; padding: 0 24px; border-radius: 999px; border: 1.5px solid #021A32; color: #021A32; text-decoration: none; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 15px">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg>
+Chamar no WhatsApp</a>
+</div>
+<div class="mc in4" style="display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 14px; font-weight: 500; color: #33404D; margin-top: 4px">
+<span style="display: inline-flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C93A29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Análise inicial gratuita</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C93A29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>100% pelo WhatsApp</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C93A29" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sem letras miúdas</span>
+</div>
+</div>
+
+<div style="flex: 1 1 460px; min-width: 0; position: relative; padding: 0 0 0 0">
+<div class="heroimg" style="position: relative; height: 600px; border-radius: 28px; overflow: hidden; background: #E8DED6">
+<img src="/img/hero.webp" alt="Homem de tipoia sentado no sofá, sorrindo enquanto usa o celular, com uma muleta ao lado" fetchpriority="high" width="1024" height="688" style="width: 100%; height: 100%; object-fit: cover; object-position: 58% center">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,26,50,0) 55%, rgba(2,26,50,0.55) 100%)"></div>
+</div>
+
+<div class="card1" style="position: absolute; left: -36px; top: 52px; max-width: 290px">
+<div class="float" style="background: #FFFFFF; border-radius: 18px; padding: 14px 16px; box-shadow: 0 24px 50px -20px rgba(2,26,50,0.45); display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; gap: 10px">
+<span style="width: 34px; height: 34px; border-radius: 50%; background: #25D366; display: inline-flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg></span>
+<div style="line-height: 1.2"><p style="margin: 0; font-weight: 700; font-size: 13px; color: #021A32">AmigoPrev</p><p style="margin: 0; font-size: 11px; color: #1F8A4C">online agora</p></div>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #33404D; background: #F1F4F6; border-radius: 4px 14px 14px 14px; padding: 10px 12px">Oi! Me conta como foi o acidente que a gente te explica os próximos passos.</p>
+</div>
+</div>
+
+<div class="card2" style="position: absolute; right: -18px; bottom: 120px">
+<div class="float2" style="background: #021A32; color: #FFFFFF; border-radius: 18px; padding: 16px 18px; box-shadow: 0 24px 50px -20px rgba(2,26,50,0.6); display: flex; align-items: center; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 12px; background: #E74F3D; display: inline-flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></span>
+<div style="line-height: 1.3"><p style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 14px">Documentos organizados</p><p style="margin: 0; font-size: 12px; color: #C6D0DA">laudos, CTPS e exames</p></div>
+</div>
+</div>
+
+<div class="card3 hide-m" style="position: absolute; left: 28px; bottom: 28px">
+<div style="background: rgba(255,255,255,0.16); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.35); color: #FFFFFF; border-radius: 999px; padding: 10px 16px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600">
+<span style="display: inline-flex; gap: 4px" aria-hidden="true"><span class="dot" style="width: 6px; height: 6px; border-radius: 50%; background: #FFFFFF"></span><span class="dot" style="width: 6px; height: 6px; border-radius: 50%; background: #FFFFFF"></span><span class="dot" style="width: 6px; height: 6px; border-radius: 50%; background: #FFFFFF"></span></span>
+Um especialista está respondendo
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MARQUEE -->
+<section aria-label="Assuntos que atendemos" style="background: #021A32; color: #FFFFFF; padding: 22px 0; overflow: hidden">
+<div class="track" style="display: flex; width: max-content; gap: 48px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.3px; white-space: nowrap">
+<span>Auxílio-acidente</span><span style="color: #E74F3D" aria-hidden="true">✦</span><span>Auxílio-doença</span><span style="color: #E74F3D" aria-hidden="true">✦</span><span>Benefício por incapacidade</span><span style="color: #E74F3D" aria-hidden="true">✦</span><span>Seguro por acidente</span><span style="color: #E74F3D" aria-hidden="true">✦</span><span>Seguro por invalidez</span><span style="color: #E74F3D" aria-hidden="true">✦</span><span>Organização de documentos</span><span style="color: #E74F3D" aria-hidden="true">✦</span>
+<span aria-hidden="true">Auxílio-acidente</span><span style="color: #E74F3D" aria-hidden="true">✦</span><span aria-hidden="true">Auxílio-doença</span><span style="color: #E74F3D" aria-hidden="true">✦</span><span aria-hidden="true">Benefício por incapacidade</span><span style="color: #E74F3D" aria-hidden="true">✦</span><span aria-hidden="true">Seguro por acidente</span><span style="color: #E74F3D" aria-hidden="true">✦</span><span aria-hidden="true">Seguro por invalidez</span><span style="color: #E74F3D" aria-hidden="true">✦</span><span aria-hidden="true">Organização de documentos</span><span style="color: #E74F3D" aria-hidden="true">✦</span>
+</div>
+</section>
+
+<!-- PARA QUEM É -->
+<section id="para-quem" class="sec" style="padding: 112px 24px; background: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 52px">
+<div class="mc rv" style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end">
+<div class="mc" style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
+<span style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #C93A29">PARA QUEM É A AMIGOPREV</span>
+<h2 class="h2" style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 46px; line-height: 1.08; letter-spacing: -1.4px; color: #021A32">Você se reconhece em alguma destas situações?</h2>
+</div>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #4A5563; max-width: 380px">Se sim, a gente pode te ajudar a entender o que fazer agora — sem juridiquês e sem enrolação.</p>
+</div>
+
+<div class="bento" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: 260px; gap: 18px">
+<article class="tile lift rv" style="grid-column: span 7; grid-row: span 2; border-radius: 28px; background: #021A32">
+<img src="/img/transito.webp" alt="Motociclista no trânsito de uma avenida da cidade" loading="lazy" width="1024" height="688" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,26,50,0) 30%, rgba(2,26,50,0.92) 100%)"></div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 32px; display: flex; flex-direction: column; gap: 10px; color: #FFFFFF">
+<span style="align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 6px 12px; border-radius: 999px; background: #E74F3D">ACIDENTE DE TRÂNSITO</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 30px; line-height: 1.15; letter-spacing: -0.6px; color: #FFFFFF">Se machucou indo ou voltando, de moto, carro ou a pé</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #D6DEE6; max-width: 520px">Acidentes de trânsito são a causa mais comum de afastamento entre quem procura a gente. Explicamos o que pode se aplicar no seu caso.</p>
+</div>
+</article>
+<article class="tile lift rv" style="grid-column: span 5; grid-row: span 1; border-radius: 28px; background: #E8DED6">
+<img src="/img/clt.webp" alt="Trabalhador de colete refletivo sorrindo em um armazém" loading="lazy" width="1024" height="688" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 65% 25%">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,26,50,0) 25%, rgba(2,26,50,0.88) 100%)"></div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 26px; display: flex; flex-direction: column; gap: 6px; color: #FFFFFF">
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 21px; line-height: 1.2; color: #FFFFFF">Sou CLT e sofri um acidente</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #D6DEE6">No trabalho ou fora dele, a carteira assinada faz diferença.</p>
+</div>
+</article>
+<article class="tile lift rv" style="grid-column: span 5; grid-row: span 1; border-radius: 28px; background: #E8DED6">
+<img src="/img/casa.webp" alt="Homem com a perna engessada no sofá, usando o notebook" loading="lazy" width="1024" height="688" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,26,50,0) 25%, rgba(2,26,50,0.88) 100%)"></div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 26px; display: flex; flex-direction: column; gap: 6px; color: #FFFFFF">
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 21px; line-height: 1.2; color: #FFFFFF">Me machuquei em casa</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #D6DEE6">Queda, corte, fratura: acidente doméstico também pode contar.</p>
+</div>
+</article>
+<article class="lift rv" style="grid-column: span 6; grid-row: span 1; border-radius: 28px; background: #FAF6F3; border: 1px solid #F0E6DF; padding: 30px; display: flex; flex-direction: column; justify-content: space-between">
+<span style="width: 52px; height: 52px; border-radius: 16px; background: #021A32; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></span>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 22px; color: #021A32">Estou afastado do trabalho</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4A5563">O médico me afastou e não sei como dar entrada ou acompanhar o pedido no INSS.</p>
+</div>
+</article>
+<article class="lift rv" style="grid-column: span 6; grid-row: span 1; border-radius: 28px; background: #E74F3D; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; color: #FFFFFF; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -60px; top: -60px; width: 220px; height: 220px; border-radius: 50%; border: 36px solid rgba(255,255,255,0.12)"></div>
+<span style="width: 52px; height: 52px; border-radius: 16px; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C93A29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></span>
+<div style="display: flex; flex-direction: column; gap: 8px; position: relative">
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 22px; color: #FFFFFF">Tenho dúvida sobre um seguro</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #FFFFFF">Não sei se tenho seguro por acidente, invalidez ou falecimento — nem como acionar.</p>
+</div>
+</article>
+</div>
+<div class="mc rv" style="display: flex; justify-content: center">
+<a class="btn" href="#contato" style="display: inline-flex; align-items: center; gap: 10px; height: 58px; padding: 0 30px; border-radius: 999px; background: #C93A29; color: #FFFFFF; text-decoration: none; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 16px">Analisar meu caso agora<span class="arr" aria-hidden="true">→</span></a>
+</div>
+</div>
+</section>
+
+<!-- QUEM SOMOS -->
+<section id="quem-somos" class="sec" style="padding: 112px 24px; background: #FAF6F3; position: relative; overflow: hidden">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 72px; align-items: center">
+<div class="rv-l" style="flex: 1 1 460px; min-width: 0; position: relative">
+<div aria-hidden="true" style="position: absolute; inset: 28px -20px -24px 28px; border-radius: 32px; border: 2px solid #E74F3D"></div>
+<div class="zoom" style="position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 3.4; background: #E8DED6">
+<img src="/img/atendimento.webp" alt="Consultora e cliente sorrindo enquanto revisam documentos juntos" loading="lazy" width="1024" height="688" style="width: 100%; height: 100%; object-fit: cover">
+</div>
+<div class="hide-m" style="position: absolute; right: -28px; top: -36px; width: 132px; height: 132px">
+<svg class="badge-spin" viewBox="0 0 200 200" width="132" height="132" role="img" aria-label="Atendimento humano, de verdade">
+<defs><path id="circ" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+<circle cx="100" cy="100" r="98" fill="#021A32"/>
+<text font-family="Montserrat, sans-serif" font-weight="700" font-size="17" letter-spacing="4" fill="#FFFFFF"><textPath href="#circ">ATENDIMENTO HUMANO • DE VERDADE • </textPath></text>
+</svg>
+<span aria-hidden="true" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="#E74F3D"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8Z"/></svg></span>
+</div>
+</div>
+<div class="mc rv-r" style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 22px; align-items: flex-start">
+<span style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #C93A29">QUEM SOMOS</span>
+<h2 class="h2" style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 46px; line-height: 1.08; letter-spacing: -1.4px; color: #021A32">Depois do susto, vêm as dúvidas. A gente cuida delas com você.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.75; color: #4A5563">A AmigoPrev é uma assessoria em seguro e previdência focada em quem sofreu um acidente. Qual benefício pedir? Quais documentos juntar? Por onde começar? Nosso papel é explicar seus caminhos com clareza, organizar a papelada e acompanhar você junto ao INSS e às seguradoras.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; width: 100%; margin-top: 6px">
+<div style="background: #FFFFFF; border-radius: 18px; padding: 18px; display: flex; gap: 12px; align-items: flex-start; text-align: left">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C93A29" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+<div><p style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 15px; color: #021A32">Retorno rápido</p><p style="margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: #5B6673">Direto com quem entende.</p></div>
+</div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 18px; display: flex; gap: 12px; align-items: flex-start; text-align: left">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C93A29" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+<div><p style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 15px; color: #021A32">Foco em acidentes</p><p style="margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: #5B6673">É o nosso dia a dia.</p></div>
+</div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 18px; display: flex; gap: 12px; align-items: flex-start; text-align: left">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C93A29" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>
+<div><p style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 15px; color: #021A32">Tudo pelo WhatsApp</p><p style="margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: #5B6673">Sem sair de casa.</p></div>
+</div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 18px; display: flex; gap: 12px; align-items: flex-start; text-align: left">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C93A29" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+<div><p style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 15px; color: #021A32">Transparência</p><p style="margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: #5B6673">Custos claros antes de tudo.</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- O QUE FAZEMOS -->
+<section id="servicos" class="sec" style="padding: 112px 24px; background: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 64px; align-items: flex-start">
+<div class="mc rv" style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px; align-items: flex-start; position: sticky; top: 110px">
+<span style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #C93A29">O QUE FAZEMOS</span>
+<h2 class="h2" style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 46px; line-height: 1.08; letter-spacing: -1.4px; color: #021A32">Você não enfrenta a burocracia sozinho.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #4A5563">Atuamos no apoio administrativo junto ao INSS e às seguradoras, com orientação em cada etapa.</p>
+<a class="ghost" href="https://wa.me/5534984221619?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20da%20AmigoPrev%20e%20gostaria%20de%20saber%20se%20tenho%20direito%20a%20algum%20benef%C3%ADcio." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 22px; border-radius: 999px; border: 1.5px solid #021A32; color: #021A32; text-decoration: none; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 15px; margin-top: 6px">Tirar uma dúvida agora</a>
+</div>
+<div style="flex: 2 1 600px; min-width: 0; display: flex; flex-direction: column; border-top: 1px solid #E6E9ED">
+<div class="svc rv" style="display: grid; grid-template-columns: 84px 1fr 1.2fr; gap: 20px; align-items: start; padding: 32px 20px; border-bottom: 1px solid #E6E9ED; position: relative">
+<span class="bar" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: #E74F3D"></span>
+<span class="num" style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #D5DBE2">01</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.25; color: #021A32">Pedido de benefício no INSS</h3>
+<p class="svc-d" style="margin: 0; font-size: 16px; line-height: 1.65; color: #4A5563">Orientamos e apoiamos o pedido de auxílio-acidente, auxílio-doença e demais benefícios por incapacidade.</p>
+</div>
+<div class="svc rv" style="display: grid; grid-template-columns: 84px 1fr 1.2fr; gap: 20px; align-items: start; padding: 32px 20px; border-bottom: 1px solid #E6E9ED; position: relative">
+<span class="bar" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: #E74F3D"></span>
+<span class="num" style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #D5DBE2">02</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.25; color: #021A32">Seguros por acidente</h3>
+<p class="svc-d" style="margin: 0; font-size: 16px; line-height: 1.65; color: #4A5563">Ajudamos a organizar o necessário para acionar seguros por acidente, invalidez ou falecimento.</p>
+</div>
+<div class="svc rv" style="display: grid; grid-template-columns: 84px 1fr 1.2fr; gap: 20px; align-items: start; padding: 32px 20px; border-bottom: 1px solid #E6E9ED; position: relative">
+<span class="bar" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: #E74F3D"></span>
+<span class="num" style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #D5DBE2">03</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.25; color: #021A32">Organização de documentos</h3>
+<p class="svc-d" style="margin: 0; font-size: 16px; line-height: 1.65; color: #4A5563">Dizemos exatamente o que juntar — laudos, carteira de trabalho, documentos pessoais — e revisamos antes do envio.</p>
+</div>
+<div class="svc rv" style="display: grid; grid-template-columns: 84px 1fr 1.2fr; gap: 20px; align-items: start; padding: 32px 20px; border-bottom: 1px solid #E6E9ED; position: relative">
+<span class="bar" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: #E74F3D"></span>
+<span class="num" style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #D5DBE2">04</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.25; color: #021A32">Acompanhamento até o fim</h3>
+<p class="svc-d" style="margin: 0; font-size: 16px; line-height: 1.65; color: #4A5563">Seguimos com você em todas as etapas e avisamos sobre cada movimentação do seu pedido.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona" class="sec" style="padding: 112px 24px; background: #021A32; color: #FFFFFF; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -200px; top: -200px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(231,79,61,0.22), rgba(231,79,61,0) 65%)"></div>
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px; position: relative">
+<div class="mc rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 700px">
+<span style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #FF8A7A">COMO FUNCIONA</span>
+<h2 class="h2" style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 46px; line-height: 1.08; letter-spacing: -1.4px; color: #FFFFFF">Simples assim. Quatro passos, sem sair de casa.</h2>
+</div>
+<div style="position: relative">
+<div class="hide-m" aria-hidden="true" style="position: absolute; left: 28px; right: 28px; top: 27px; height: 2px; background: rgba(255,255,255,0.14)"></div>
+<div class="hide-m grow" aria-hidden="true" style="position: absolute; left: 28px; right: 28px; top: 27px; height: 2px; background: #E74F3D"></div>
+<div class="steps" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; position: relative">
+<div class="mc rv" style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+<span style="width: 56px; height: 56px; border-radius: 50%; background: #E74F3D; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 20px; box-shadow: 0 0 0 8px #021A32">1</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 20px; color: #FFFFFF">Você conta o que aconteceu</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C6D0DA">Deixe nome e celular, ou chame direto no WhatsApp.</p>
+</div>
+<div class="mc rv" style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+<span style="width: 56px; height: 56px; border-radius: 50%; background: #FFFFFF; color: #021A32; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 20px; box-shadow: 0 0 0 8px #021A32">2</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 20px; color: #FFFFFF">Analisamos sem custo</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C6D0DA">Avaliamos sua situação e explicamos os caminhos possíveis.</p>
+</div>
+<div class="mc rv" style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+<span style="width: 56px; height: 56px; border-radius: 50%; background: #FFFFFF; color: #021A32; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 20px; box-shadow: 0 0 0 8px #021A32">3</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 20px; color: #FFFFFF">Organizamos os documentos</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C6D0DA">Com sua autorização, preparamos tudo para o pedido.</p>
+</div>
+<div class="mc rv" style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+<span style="width: 56px; height: 56px; border-radius: 50%; background: #FFFFFF; color: #021A32; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 20px; box-shadow: 0 0 0 8px #021A32">4</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 20px; color: #FFFFFF">Acompanhamos até o fim</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C6D0DA">Ficamos do seu lado até a decisão do INSS ou da seguradora.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- POR QUE -->
+<section id="por-que" class="sec" style="padding: 112px 24px; background: #FAF6F3">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
+<p class="stmt rv" style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 44px; line-height: 1.2; letter-spacing: -1.2px; color: #021A32; max-width: 1040px">Por que escolher a AmigoPrev? A gente <span style="color: #C93A29">fala a sua língua</span>.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px">
+<div class="lift rv" style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 15px; color: #C93A29">01 —</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 19px; color: #021A32">Gente de verdade</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4A5563">Você conversa com uma pessoa, que escuta sua história com empatia.</p>
+</div>
+<div class="lift rv" style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 15px; color: #C93A29">02 —</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 19px; color: #021A32">Especialização em acidentes</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4A5563">Nosso dia a dia é ajudar trabalhadores que se acidentaram.</p>
+</div>
+<div class="lift rv" style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 15px; color: #C93A29">03 —</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 19px; color: #021A32">Clareza em cada etapa</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4A5563">Você sempre sabe o que está acontecendo e qual é o próximo passo.</p>
+</div>
+<div class="lift rv" style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 15px; color: #C93A29">04 —</span>
+<h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 19px; color: #021A32">Sem surpresas</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4A5563">Análise inicial gratuita e valores explicados antes de seguir.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- DÚVIDAS -->
+<section id="duvidas" class="sec" style="padding: 112px 24px; background: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 64px; align-items: flex-start">
+<div class="mc rv" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 18px; align-items: flex-start">
+<span style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #C93A29">DÚVIDAS FREQUENTES</span>
+<h2 class="h2" style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 46px; line-height: 1.08; letter-spacing: -1.4px; color: #021A32">Perguntas que a gente mais ouve.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #4A5563">Não achou a sua? Chame no WhatsApp e pergunte direto.</p>
+</div>
+<div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<details class="faq rv" style="background: #FAF6F3; border-radius: 20px; padding: 0 24px">
+<summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 17px; color: #021A32">Preciso pagar alguma coisa antes?<span class="pl" aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; color: #C93A29; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1">+</span></summary>
+<p style="margin: 0 0 24px; font-size: 16px; line-height: 1.7; color: #4A5563; max-width: 640px">Não. A análise inicial é gratuita, e só seguimos com o atendimento depois da sua autorização.</p>
+</details>
+<details class="faq rv" style="background: #FAF6F3; border-radius: 20px; padding: 0 24px">
+<summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 17px; color: #021A32">Quanto custa o atendimento completo?<span class="pl" aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; color: #C93A29; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1">+</span></summary>
+<p style="margin: 0 0 24px; font-size: 16px; line-height: 1.7; color: #4A5563; max-width: 640px">O primeiro atendimento é gratuito. Se fizer sentido seguir, explicamos todos os valores com transparência antes de qualquer passo, sem surpresas.</p>
+</details>
+<details class="faq rv" style="background: #FAF6F3; border-radius: 20px; padding: 0 24px">
+<summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 17px; color: #021A32">O atendimento pode ser online?<span class="pl" aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; color: #C93A29; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1">+</span></summary>
+<p style="margin: 0 0 24px; font-size: 16px; line-height: 1.7; color: #4A5563; max-width: 640px">Sim. Todo o processo pode ser feito pelo WhatsApp ou por e-mail, sem você precisar sair de casa.</p>
+</details>
+<details class="faq rv" style="background: #FAF6F3; border-radius: 20px; padding: 0 24px">
+<summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 17px; color: #021A32">Quais documentos preciso enviar?<span class="pl" aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; color: #C93A29; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1">+</span></summary>
+<p style="margin: 0 0 24px; font-size: 16px; line-height: 1.7; color: #4A5563; max-width: 640px">Em geral: documento com foto, carteira de trabalho, laudos e atestados médicos e exames ligados à lesão. Na análise, dizemos exatamente o que é necessário no seu caso.</p>
+</details>
+<details class="faq rv" style="background: #FAF6F3; border-radius: 20px; padding: 0 24px">
+<summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 17px; color: #021A32">Acidente fora do trabalho também conta?<span class="pl" aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; color: #C93A29; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1">+</span></summary>
+<p style="margin: 0 0 24px; font-size: 16px; line-height: 1.7; color: #4A5563; max-width: 640px">Pode contar, sim. Acidentes de trânsito ou domésticos também podem gerar direito a benefícios para quem trabalha com carteira assinada. Tudo depende da situação — vínculo com o INSS, laudos médicos e impacto da lesão no trabalho —, por isso analisamos caso a caso.</p>
+</details>
+<details class="faq rv" style="background: #FAF6F3; border-radius: 20px; padding: 0 24px">
+<summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 17px; color: #021A32">Posso dar entrada sem boletim de ocorrência?<span class="pl" aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; color: #C93A29; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1">+</span></summary>
+<p style="margin: 0 0 24px; font-size: 16px; line-height: 1.7; color: #4A5563; max-width: 640px">Em muitos casos, sim. O boletim pode ajudar, mas nem sempre é obrigatório. Avaliamos a documentação que você já tem e orientamos o melhor caminho.</p>
+</details>
+<details class="faq rv" style="background: #FAF6F3; border-radius: 20px; padding: 0 24px">
+<summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 17px; color: #021A32">Quanto tempo leva para ter uma resposta?<span class="pl" aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; color: #C93A29; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1">+</span></summary>
+<p style="margin: 0 0 24px; font-size: 16px; line-height: 1.7; color: #4A5563; max-width: 640px">Depende do tipo de pedido e dos prazos do INSS ou da seguradora, como perícias e análises. Nossa parte é deixar a documentação completa para evitar atrasos e manter você informado.</p>
+</details>
+</div>
+</div>
+</section>
+
+<!-- FORMULÁRIO FINAL -->
+<section id="contato" class="sec" style="padding: 40px 24px 112px; background: #FFFFFF">
+<div class="clip" style="max-width: 1240px; margin: 0 auto; border-radius: 32px; overflow: hidden; background: #021A32; display: flex; flex-wrap: wrap; position: relative">
+<div class="zoom" style="flex: 1 1 440px; min-width: 0; min-height: 420px; position: relative; overflow: hidden">
+<img src="/img/acordo.webp" alt="Consultora e cliente apertando as mãos, sorrindo, após chegarem a um acordo" loading="lazy" width="1024" height="688" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% center">
+<div class="fade" aria-hidden="true" style="position: absolute; inset: 0"></div>
+</div>
+<div class="mc" style="flex: 1 1 460px; min-width: 0; padding: 56px; display: flex; flex-direction: column; gap: 22px; color: #FFFFFF; position: relative">
+<div aria-hidden="true" style="position: absolute; right: -80px; bottom: -80px; width: 260px; height: 260px; border-radius: 50%; border: 44px solid rgba(231,79,61,0.16)"></div>
+<span style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #FF8A7A">ANÁLISE GRATUITA</span>
+<h2 class="h2" style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 42px; line-height: 1.08; letter-spacing: -1.2px; color: #FFFFFF">Não fique com dúvida sobre os seus direitos.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #C6D0DA">Deixe seu nome e celular. Um especialista da AmigoPrev chama você no WhatsApp para entender o caso.</p>
+<form id="lead" novalidate style="display: flex; flex-direction: column; gap: 14px; position: relative; width: 100%; max-width: 480px">
+<label for="f-nome" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 600; color: #E6EAEE; text-align: left">Seu nome
+<input id="f-nome" name="nome" class="inp" type="text" autocomplete="name" placeholder="Como podemos te chamar?" maxlength="120" aria-describedby="err-nome">
+</label>
+<p id="err-nome" class="ferr" role="alert" hidden></p>
+<label for="f-cel" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 600; color: #E6EAEE; text-align: left">Celular / WhatsApp
+<input id="f-cel" name="whatsapp" class="inp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(00) 00000-0000" aria-describedby="err-cel">
+</label>
+<p id="err-cel" class="ferr" role="alert" hidden></p>
+<p id="err-send" class="ferr" role="alert" hidden></p>
+<button id="sendbtn" class="btn" type="submit" style="height: 60px; border: 0; border-radius: 16px; background: #C93A29; color: #FFFFFF; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 17px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 4px"><span id="sendtxt">Quero minha análise gratuita</span><span class="arr" aria-hidden="true">→</span></button>
+<p style="margin: 0; font-size: 12px; color: #A9B4BF; display: flex; align-items: center; gap: 6px; justify-content: center"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Seus dados ficam protegidos e não são compartilhados.</p>
+</form>
+</div>
+</div>
+</section>
+
+<!-- RODAPÉ -->
+<footer style="background: #01111F; color: #B7C1CC; padding: 64px 24px 40px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px">
+<div class="mc" style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-start">
+<div class="mc" style="display: flex; flex-direction: column; gap: 10px; line-height: 1">
+<span style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.8px; color: #FFFFFF">Amigo<span style="color: #E74F3D">Prev</span></span>
+<span style="font-size: 13px; color: #B7C1CC">Assessoria em Seguro e Previdência</span>
+</div>
+<div class="mc" style="display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+<span style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 1.6px; color: #FFFFFF">CONTATO</span>
+<a href="https://wa.me/5534984221619?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20da%20AmigoPrev%20e%20gostaria%20de%20saber%20se%20tenho%20direito%20a%20algum%20benef%C3%ADcio." target="_blank" rel="noopener" style="color: #E6EAEE; text-decoration: none">WhatsApp: (34) 98422-1619</a>
+<a href="mailto:amigoprev.uber@gmail.com" style="color: #E6EAEE; text-decoration: none">E-mail: amigoprev.uber@gmail.com</a>
+</div>
+</div>
+<div style="border-top: 1px solid rgba(255,255,255,0.12); padding-top: 24px; display: flex; flex-direction: column; gap: 10px; font-size: 12px; line-height: 1.7; color: #A9B4BF">
+<p style="margin: 0">A AmigoPrev é uma assessoria privada em seguro e previdência. Não é escritório de advocacia e não possui vínculo com o INSS ou com qualquer órgão do governo. Os serviços de assessoria são remunerados. O pedido de benefícios também pode ser feito gratuitamente pelo próprio cidadão no Meu INSS (gov.br/meuinss) ou pela Central 135. A concessão de qualquer benefício depende exclusivamente da análise do INSS.</p>
+<p style="margin: 0">© 2026 AmigoPrev · [RAZÃO SOCIAL] · CNPJ [00.000.000/0000-00] · [ENDEREÇO] · <a href="#" style="color: #E6EAEE">Política de Privacidade</a></p>
+</div>
+</div>
+</footer>
+
+<a class="wa wa-ring" href="https://wa.me/5534984221619?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20da%20AmigoPrev%20e%20gostaria%20de%20saber%20se%20tenho%20direito%20a%20algum%20benef%C3%ADcio." target="_blank" rel="noopener" aria-label="Falar com a AmigoPrev no WhatsApp" style="width: 62px; height: 62px; border-radius: 50%; background: #25D366; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg>
+</a>
+
+</div>
+<script>
+window.LP_CONFIG = {
+  supabaseUrl: 'https://qxhnjzyhtllmtdrcyygi.supabase.co',
+  supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4aG5qenlodGxsbXRkcmN5eWdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMzczNjgsImV4cCI6MjA5NzgxMzM2OH0.DWf4I_x9F--H7ZZHUt_n4V3B__Nlsf1jNZdUV0vNBLU',
+  site: 'amigoprev'
+};
+(function(){
+  var c=window.LP_CONFIG;
+  window.lpInsert=function(table,row){
+    return fetch(c.supabaseUrl+'/rest/v1/'+table,{method:'POST',headers:{'apikey':c.supabaseAnonKey,'Authorization':'Bearer '+c.supabaseAnonKey,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(row),keepalive:true});
+  };
+  try{
+    var q=new URLSearchParams(location.search),o='';
+    if(q.get('utm_source'))o=q.get('utm_source')+(q.get('utm_campaign')?' / '+q.get('utm_campaign'):'');
+    else if(q.get('gclid')||q.get('gbraid')||q.get('wbraid'))o='google-ads';
+    else if(q.get('fbclid'))o='meta';
+    else if(document.referrer&&document.referrer.indexOf(location.hostname)<0){try{o=new URL(document.referrer).hostname}catch(e){}}
+    if(o)sessionStorage.setItem('lp_origem',o.slice(0,120));
+  }catch(e){}
+  window.lpOrigem=function(){try{return sessionStorage.getItem('lp_origem')||'direto'}catch(e){return 'direto'}};
+  try{lpInsert('lp_visits',{site:c.site,path:location.pathname,referrer:(document.referrer||'').slice(0,500)||null});}catch(e){}
+})();
+(function(){
+  var f=document.getElementById('lead'),n=document.getElementById('f-nome'),w=document.getElementById('f-cel'),btn=document.getElementById('sendbtn'),txt=document.getElementById('sendtxt');
+  function mask(v){var d=String(v||'').replace(/\D/g,'').slice(0,11);if(d.length<=2)return d.length?'('+d:'';if(d.length<=6)return '('+d.slice(0,2)+') '+d.slice(2);if(d.length<=10)return '('+d.slice(0,2)+') '+d.slice(2,6)+'-'+d.slice(6);return '('+d.slice(0,2)+') '+d.slice(2,7)+'-'+d.slice(7);}
+  function err(id,input,msg){var e=document.getElementById(id);e.textContent=msg;e.hidden=!msg;if(input)input.setAttribute('aria-invalid',msg?'true':'false');}
+  w.addEventListener('input',function(){w.value=mask(w.value);err('err-cel',w,'');});
+  n.addEventListener('input',function(){err('err-nome',n,'');});
+  var sending=false;
+  f.addEventListener('submit',async function(ev){
+    ev.preventDefault(); if(sending)return;
+    var nome=n.value.trim(), digits=w.value.replace(/\D/g,'');
+    var ne=nome.length<2?'Informe seu nome.':'', pe=(digits.length<10||digits.length>11)?'Informe um celular válido, com DDD.':'';
+    err('err-nome',n,ne);err('err-cel',w,pe); if(ne||pe)return;
+    sending=true;btn.disabled=true;txt.textContent='Enviando…';err('err-send',null,'');
+    try{
+      var c=window.LP_CONFIG, key='lp_sent_'+digits, already=false;
+      try{var t=+sessionStorage.getItem(key);already=t&&(Date.now()-t<30*60*1000);}catch(e){}
+      if(!already){
+        var r=await lpInsert('lp_leads',{site:c.site,nome:nome.slice(0,120),whatsapp:digits,origem:lpOrigem()});
+        if(!r.ok)throw new Error('falha');
+        try{sessionStorage.setItem(key,String(Date.now()));}catch(e){}
+      }
+      try{sessionStorage.setItem('lp_nome',nome.split(' ')[0]);}catch(e){}
+      try{ if(window.dataLayer)dataLayer.push({event:'lead_form_submit',form:'amigoprev_lp'}); if(window.fbq)fbq('track','Lead'); if(window.gtag)gtag('event','generate_lead'); }catch(e){}
+      location.href='/redirect';
+    }catch(e){
+      sending=false;btn.disabled=false;txt.textContent='Quero minha análise gratuita';
+      err('err-send',null,'Não foi possível enviar agora. Tente novamente em instantes ou chame no WhatsApp.');
+    }
+  });
+})();
+</script>
+</body>
+</html>
